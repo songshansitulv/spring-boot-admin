@@ -22,3 +22,4 @@ after_success:
   - ./mvnw jacoco:report coveralls:report -B
   - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && [[ ${TRAVIS_TAG} == '' ]] && ./mvnw deploy -DrepositoryId=sonatype-nexus-snapshots -DskipTests --settings deploy-settings.xml -B"
   - "[[ ${TRAVIS_PULL_REQUEST} == 'false' ]] && [[ ${TRAVIS_TAG} != '' ]] && ./mvnw deploy -DrepositoryId=sonatype-nexus-staging -DskipTests -Drevision=${TRAVIS_TAG} -DdisableSpringSnapshots=true --settings deploy-settings.xml -B"
+  - bash <(curl -s https://copilot.blackducksoftware.com/ci/travis/scripts/upload)
